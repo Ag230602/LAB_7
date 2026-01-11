@@ -1,4 +1,4 @@
-## PDE-GCN+: An Explainable Data-Engineering Framework for Multivariate Spatiotemporal Forecasting
+## RD-GCN: Reaction–Diffusion Graph Neural Networks for Long-Horizon Multivariate Forecasting
 
 
 
