@@ -1,19 +1,13 @@
-#exp_basic.py
 import os
 import torch
-from model import Transformer, iTransformer , DFGCN, FourierGNN,  LLM_PDE_GCN, PDE_GCN
-
+from model import PDE_GCN
 
 class Exp_Basic(object):
     def __init__(self, args):
         self.args = args
         self.model_dict = {
-            'DFGCN': DFGCN,
-            'Transformer': Transformer,
-            'iTransformer': iTransformer,
-            'FourierGNN': FourierGNN,
-            'DFGCN_PDE': PDE_GCN,         # explicit PDE name (same class object as above) 
-            'LLM_PDE_GCN': LLM_PDE_GCN,
+            "PDE_GCN": PDE_GCN,
+            "DFGCN_PDE": PDE_GCN
         }
         self.device = self._acquire_device()
         self.model = self._build_model().to(self.device)
@@ -24,8 +18,7 @@ class Exp_Basic(object):
 
     def _acquire_device(self):
         if self.args.use_gpu:
-            os.environ["CUDA_VISIBLE_DEVICES"] = str(
-                self.args.gpu) if not self.args.use_multi_gpu else self.args.devices
+            os.environ["CUDA_VISIBLE_DEVICES"] = str(self.args.gpu) if not self.args.use_multi_gpu else self.args.devices
             device = torch.device('cuda:{}'.format(self.args.gpu))
             print('Use GPU: cuda:{}'.format(self.args.gpu))
         else:
